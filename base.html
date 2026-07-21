@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Retail Scanner App{% endblock %}</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Style System -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">
+                <i class="fas fa-barcode"></i>
+            </div>
+            <span class="brand-name">ScanRetail</span>
+        </div>
+        
+        <nav>
+            <ul class="nav-menu">
+                <li>
+                    <a href="{{ url_for('dashboard') }}" class="nav-link {% if active_page == 'dashboard' %}active{% endif %}">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('scanner') }}" class="nav-link {% if active_page == 'scanner' %}active{% endif %}">
+                        <i class="fas fa-cash-register"></i>
+                        <span>Scan & Bill</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('inventory') }}" class="nav-link {% if active_page == 'inventory' %}active{% endif %}">
+                        <i class="fas fa-boxes-stacked"></i>
+                        <span>Inventory</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('invoices') }}" class="nav-link {% if active_page == 'invoices' %}active{% endif %}">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>Invoices</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <p>Retail Scanner v1.0</p>
+            <p>College Mini-Project</p>
+        </div>
+    </aside>
+
+    <!-- Main Page Layout Wrapper -->
+    <div class="main-wrapper">
+        <header class="top-bar">
+            <h1 class="page-title">{% block page_title %}Dashboard{% endblock %}</h1>
+            <div class="user-profile">
+                <span>Welcome, <strong>Admin</strong></span>
+                <div class="avatar">A</div>
+            </div>
+        </header>
+
+        <main class="content-body">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>
